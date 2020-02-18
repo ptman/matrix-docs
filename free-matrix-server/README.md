@@ -29,6 +29,10 @@ You can also use freenom dns management if you prefer.
 [Cloudflare]: https://www.cloudflare.com
 [migrated]: https://github.com/matrix-org/synapse/issues/1209
 
+As a free alternative, you can check https://duckdns.org where 
+you can get a free domain name with automatic subdomain redirection
+and automatic update (with an easy setup by cron job). 
+
 ## Get a free server
 
 Comparison of free cloud offerings (2019/10):
@@ -128,6 +132,34 @@ records:
 - CNAME record `matrix.$domain` pointing to `$domain`
 - CNAME record `riot.$domain` pointing to `$domain`
 
+## Install the latest version of Ansible
+
+Ubuntu 18.04 ships with Ansible 2.5.1, but the Ansible playbook used below in this guide 
+requires Ansible 2.5.2 at minimum. Here is how to update Ansible by using their [ppa] repository.
+
+```sh
+sudo apt install software-properties-common
+# now the command add-apt-repository is installed
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+```
+
+## Quick Ansible configuration
+
+Store your private key for SSH login in your server (for example in `~/.ssh/my_private_key.pem`)
+Change its authorization for SSH to read it correctly:
+
+```sh
+chmod 400 ~/.ssh/my_private_key.pem
+```
+
+Then edit `ansible.cfg` by adding under the section [default]:
+
+```yaml
+[default]
+  private_key_file=~/.ssh/my_private_key.pem
+```
 
 ## Use matrix-docker-ansible-deploy
 
@@ -143,21 +175,25 @@ cd matrix-docker-ansible-deploy
 mkdir inventory/host_vars/matrix.$domain
 cp examples/host-vars inventory/host_vars/matrix.$domain/vars.yaml
 cp examples/hosts inventory/hosts
+# in the file "hosts", specify your external IP and the login account for SSH - with Ubuntu it must be "ubuntu".
 $EDITOR inventory/hosts
+# in the file "vars.yaml", add the values in the section below.
 $EDITOR inventory/host_vars/matrix.$domain/vars.yaml
+
 # you'll need to rerun setup-all and start tags again if you edit vars later
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ansible-playbook -i inventory/hosts setup.yml --tags=self-check
 ansible-playbook -i inventory/hosts setup.yml -e username=$user -e password=$pass -e admin=yes --tags=register-user
 ```
 
-### Serve the base domain as well (unless you already have something serving it)
+### Variables to set in `vars.yaml`
+#### Serve the base domain as well (unless you already have something serving it)
 
 ```yaml
 matrix_nginx_proxy_base_domain_serving_enabled: true
 ```
 
-### Disable all extras because of RAM
+#### Disable all extras because of RAM
 
 ```yaml
 matrix_mxisd_enabled: false
@@ -165,13 +201,13 @@ matrix_mailer_enabled: false
 matrix_coturn_enabled: true # disable to save more RAM
 ```
 
-### Configure the public IP address for coturn
+#### Configure the public IP address for coturn
 
 ```yaml
 matrix_coturn_turn_external_ip_address: $instance_external_ip_address
 ```
 
-### Limit rooms because of limited RAM
+#### Limit rooms because of limited RAM
 
 ```yaml
 matrix_synapse_configuration_extension_yaml: |
