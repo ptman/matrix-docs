@@ -104,7 +104,7 @@ memory hungry.
 
 ```sh
 snap remove oracle-cloud-agent
-apt remove snapd open-iscsi lxd lxcfs
+apt purge snapd open-iscsi lxd lxcfs
 ```
 
 ## Tune server (optional)
@@ -126,7 +126,7 @@ records:
 
 - A record `$domain` pointing to `$instance_external_ip_address`
 - CNAME record `matrix.$domain` pointing to `$domain`
-- CNAME record `riot.$domain` pointing to `$domain`
+- CNAME record `element.$domain` pointing to `$domain`
 
 
 ## Use matrix-docker-ansible-deploy
@@ -183,7 +183,7 @@ matrix_synapse_configuration_extension_yaml: |
 
 ## Done!
 
-Point your browser to https://riot.$domain or use [another
+Point your browser to https://element.$domain or use [another
 client](https://matrix.org/clients).
 
 ## Maintenance
