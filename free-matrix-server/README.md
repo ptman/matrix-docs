@@ -141,7 +141,7 @@ Follow the [guide], with some tweaks:
 git clone https://github.com/spantaleev/matrix-docker-ansible-deploy/
 cd matrix-docker-ansible-deploy
 mkdir inventory/host_vars/matrix.$domain
-cp examples/host-vars inventory/host_vars/matrix.$domain/vars.yaml
+cp examples/host-vars.yml inventory/host_vars/matrix.$domain/vars.yaml
 cp examples/hosts inventory/hosts
 $EDITOR inventory/hosts
 $EDITOR inventory/host_vars/matrix.$domain/vars.yaml
