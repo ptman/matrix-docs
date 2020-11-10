@@ -141,10 +141,10 @@ Follow the [guide], with some tweaks:
 git clone https://github.com/spantaleev/matrix-docker-ansible-deploy/
 cd matrix-docker-ansible-deploy
 mkdir inventory/host_vars/matrix.$domain
-cp examples/host-vars.yml inventory/host_vars/matrix.$domain/vars.yaml
+cp examples/host-vars.yml inventory/host_vars/matrix.$domain/vars.yml
 cp examples/hosts inventory/hosts
 $EDITOR inventory/hosts
-$EDITOR inventory/host_vars/matrix.$domain/vars.yaml
+$EDITOR inventory/host_vars/matrix.$domain/vars.yml
 # you'll need to rerun setup-all and start tags again if you edit vars later
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ansible-playbook -i inventory/hosts setup.yml --tags=self-check
