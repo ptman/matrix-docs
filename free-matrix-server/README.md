@@ -14,9 +14,9 @@ Ingredients:
 
 ## Free domain name
 
-Get one from [Freenom] for free or any other place you wish. Freenom only gives
-free domains for a year. A Matrix server cannot be [migrated] from one domain to
-another, so you might want to get a longer-lived one.
+Get one from [Freenom] or [DuckDNS] for free or any other place you wish.
+Freenom only gives free domains for a year. A Matrix server cannot be [migrated]
+from one domain to another, so you might want to get a longer-lived one.
 
 - https://tld-list.com/ - find cheap domains, look at renewal fees also
 - https://www.namecheap.com/promos/amazing98s/ - cheap first year
@@ -26,6 +26,7 @@ aren't sufficient). To do this I added the domain on the free [Cloudflare] plan.
 You can also use freenom dns management if you prefer.
 
 [Freenom]: https://www.freenom.com
+[DuckDNS]: https://www.duckdns.org/
 [Cloudflare]: https://www.cloudflare.com
 [migrated]: https://github.com/matrix-org/synapse/issues/1209
 
