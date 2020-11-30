@@ -51,7 +51,7 @@ verification) and create a free VM:
 
 1. Create a VM instance
 2. Give it a name
-3. OS/image: Canonical Ubuntu 18.04 Minimal
+3. OS/image: Canonical Ubuntu 20.04 Minimal
 4. Show Shape, Network and Storage Options -> Assign a public IP address
 5. Add SSH key ([generate one][sshkey] using `ssh-keygen` if you don't have one)
 6. Show advanced options. I removed monitoring, since I'll remove the monitoring
