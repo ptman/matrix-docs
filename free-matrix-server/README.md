@@ -161,10 +161,14 @@ matrix_nginx_proxy_base_domain_serving_enabled: true
 ### Disable all extras because of RAM
 
 ```yaml
-matrix_mxisd_enabled: false
+matrix_ma1sd_enabled: false
 matrix_mailer_enabled: false
 matrix_coturn_enabled: true # disable to save more RAM
 ```
+
+More info about running synapse on hosts with limited resources can be found [in
+the Synapse
+wiki](https://github.com/matrix-org/synapse/wiki/Running-synapse-on-Single-board-computers).
 
 ### Configure the public IP address for coturn
 
