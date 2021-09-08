@@ -1,9 +1,9 @@
 ---
-title: 'Free Small Matrix Server'
+title: 'Free Matrix Server'
 author: Paul Tötterman <paul.totterman@iki.fi>
 license: CC-BY-NC-SA
 ---
-# Free Small Matrix Server
+# Free Matrix Server
 
 Ingredients:
 
@@ -15,11 +15,12 @@ Ingredients:
 ## Free domain name
 
 Get one from [Freenom] or [DuckDNS] for free or any other place you wish.
-Freenom only gives free domains for a year. A Matrix server cannot be [migrated]
-from one domain to another, so you might want to get a longer-lived one.
+Freenom can be tricky to renew for free after the first year. A Matrix server
+cannot be [migrated] from one domain to another, so you might want to get a
+longer-lived one.
 
 - https://tld-list.com/ - find cheap domains, look at renewal fees also
-- https://www.namecheap.com/promos/amazing98s/ - cheap first year
+- https://www.namecheap.com/promos/99-cent-domain-names/ - cheap first year
 
 You also need to specify subdomains (which is why most dynamic dns services
 aren't sufficient). To do this I added the domain on the free [Cloudflare] plan.
@@ -32,14 +33,14 @@ You can also use freenom dns management if you prefer.
 
 ## Get a free server
 
-Comparison of free cloud offerings (2019/10):
+Comparison of free cloud offerings (2021/09):
 
-| Vendor   | Time-limit | Count                    | RAM (GB) | Storage (GB) | Transfer (GB) |
-| -------- | ---------- | ------------------------ | -------: | -----------: | ------------: |
-| [AWS]    | 12 months  | 1 t2.micro               | 1        | 30           | 15            |
-| [Azure]  | 12 months  | 1 B1S                    | 1        | 2x 64        | 15            |
-| [GCP]    | no limit   | 1 f1-micro               | 0.6      | 30           | 1             |
-| [Oracle] | no limit   | 2 VM.Standard.E2.1.Micro | 1        | 100          | 10000         |
+| Vendor   | Time-limit | Count                   | RAM (GB) | Storage (GB) | Transfer (GB) |
+| -------- | ---------- | ----------------------- | -------: | -----------: | ------------: |
+| [AWS]    | 12 months  | 1 t2.micro              | 1        | 30           | 15            |
+| [Azure]  | 12 months  | 1 B1S                   | 1        | 2x 64        | 15            |
+| [GCP]    | no limit   | 1 e2-micro              | 1        | 30           | 1             |
+| [Oracle] | no limit   | 1-4 VM.Standard.A1.Flex | 24       | 200          | 10000         |
 
 [AWS]: https://aws.amazon.com/free/
 [Azure]: https://azure.microsoft.com/en-us/free/
@@ -49,9 +50,9 @@ Comparison of free cloud offerings (2019/10):
 If you choose to, register on Oracle Cloud (requires credit card for
 verification) and create a free VM:
 
-1. Create a VM instance
+1. Create a VM.Standard.A1.Flex VM instance
 2. Give it a name
-3. OS/image: Canonical Ubuntu 20.04 Minimal
+3. OS/image: Canonical Ubuntu 20.04
 4. Show Shape, Network and Storage Options -> Assign a public IP address
 5. Add SSH key ([generate one][sshkey] using `ssh-keygen` if you don't have one)
 6. Show advanced options. I removed monitoring, since I'll remove the monitoring
@@ -108,18 +109,6 @@ snap remove oracle-cloud-agent
 apt purge snapd open-iscsi lxd lxcfs
 ```
 
-## Tune server (optional)
-
-I suggest enabling swap, since there's only 1 GB of RAM.
-
-```sh
-dd if=/dev/zero of=/swap bs=1M count=1k
-chmod 0600 /swap
-mkswap /swap
-swapon /swap
-echo '/swap none swap sw 0 0' >> /etc/fstab
-```
-
 ## Point domain at server
 
 Assuming you're using a new domain only for this you need the following DNS
@@ -161,33 +150,10 @@ ansible-playbook -i inventory/hosts setup.yml -e username=$user -e password=$pas
 matrix_nginx_proxy_base_domain_serving_enabled: true
 ```
 
-### Disable all extras because of RAM
-
-```yaml
-matrix_ma1sd_enabled: false
-matrix_mailer_enabled: false
-matrix_coturn_enabled: true # disable to save more RAM
-matrix_synapse_use_presence: false # presence can be quite heavy for servers
-```
-
-More info about running synapse on hosts with limited resources can be found [in
-the Synapse
-wiki](https://github.com/matrix-org/synapse/wiki/Running-synapse-on-Single-board-computers).
-
 ### Configure the public IP address for coturn
 
 ```yaml
 matrix_coturn_turn_external_ip_address: $instance_external_ip_address
-```
-
-### Limit rooms because of limited RAM
-
-```yaml
-matrix_synapse_configuration_extension_yaml: |
-  limit_remote_rooms:
-    enabled: true
-    complexity: 1.0 # this limits joining complex (~large) rooms, can be
-                    # increased, but larger values can require more RAM
 ```
 
 ## Done!
