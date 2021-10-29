@@ -98,17 +98,6 @@ firewall in front, so let's remove the current firewall to avoid trouble:
 apt purge netfilter-persistent iptables-persistent
 ```
 
-## Remove useless stuff (optional)
-
-Oracle cloud includes a somewhat heavy monitoring daemon. We have better use for
-that memory since current versions of Synapse, the Matrix homeserver, can be
-memory hungry.
-
-```sh
-snap remove oracle-cloud-agent
-apt purge snapd open-iscsi lxd lxcfs
-```
-
 ## Point domain at server
 
 Assuming you're using a new domain only for this you need the following DNS
@@ -175,6 +164,9 @@ To keep the matrix services upgraded, start by reading the [maintenance docs],
 but really, take a brief look at all the documentation.
 
 [maintenance docs]: https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/maintenance-upgrading-services.md
+
+Keep backups! You never know when the providers decide the free resources won't
+be offered anymore.
 
 Come join [#synapse:matrix.org](https://matrix.to/#/#synapse:matrix.org) to
 discuss homeservers. Or say hi to
