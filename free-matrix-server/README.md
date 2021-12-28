@@ -168,11 +168,16 @@ but really, take a brief look at all the documentation.
 Keep backups! You never know when the providers decide the free resources won't
 be offered anymore.
 
-Come join [#synapse:matrix.org](https://matrix.to/#/#synapse:matrix.org) to
-discuss homeservers. Or say hi to
-[@ptman:ptman.name](https://matrix.to/#/@ptman:ptman.name), who wrote this
-guide (also <a
-href="mailto:paul.totterman@gmail.com">paul.totterman@gmail.com</a>).
+## Discussion
+
+- [#synapse:matrix.org](https://matrix.to/#/#synapse:matrix.org) to discuss
+  running synapse in general
+- [#matrix-docker-ansible-deploy:devture.com](https://matrix.to/#/#matrix-docker-ansible-deploy:devture.com)
+  to discuss the playbook used in this guide
+- [#free-matrix-server:matrix.org](https://gitlab.com/ptman/matrix-docs/-/tree/master/free-matrix-server)
+  to discuss this guide specifically
+- Email author at <a
+  href="mailto:paul.totterman@gmail.com">paul.totterman@gmail.com</a>).
 
 Please contribute improvements to this guide via PRs ([github] or [gitlab])
 
