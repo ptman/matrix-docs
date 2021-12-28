@@ -177,7 +177,7 @@ be offered anymore.
 - [#free-matrix-server:matrix.org](https://gitlab.com/ptman/matrix-docs/-/tree/master/free-matrix-server)
   to discuss this guide specifically
 - Email author at <a
-  href="mailto:paul.totterman@gmail.com">paul.totterman@gmail.com</a>).
+  href="mailto:paul.totterman@gmail.com">paul.totterman@gmail.com</a>.
 
 Please contribute improvements to this guide via PRs ([github] or [gitlab])
 
