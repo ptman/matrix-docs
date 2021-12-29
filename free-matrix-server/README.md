@@ -42,6 +42,12 @@ Comparison of free cloud offerings (2021/09):
 | [GCP]    | no limit   | 1 e2-micro              | 1        | 30           | 1             |
 | [Oracle] | no limit   | 1-4 VM.Standard.A1.Flex | 24       | 200          | 10000         |
 
+Note that the Oracle ARM instances may not be compatible with all available
+software. Also, Oracle seems to shut down your always free cloud instances at
+the end of your 30 day trial. They can not be started back up, but you can
+create new ones by cloning the disk images, so no data should be lost. Keeping
+backups is good practise in any case.
+
 [AWS]: https://aws.amazon.com/free/
 [Azure]: https://azure.microsoft.com/en-us/free/
 [GCP]: https://cloud.google.com/free/
@@ -170,12 +176,12 @@ be offered anymore.
 
 ## Discussion
 
-- [#synapse:matrix.org](https://matrix.to/#/#synapse:matrix.org) to discuss
-  running synapse in general
-- [#matrix-docker-ansible-deploy:devture.com](https://matrix.to/#/#matrix-docker-ansible-deploy:devture.com)
-  to discuss the playbook used in this guide
 - [#free-matrix-server:matrix.org](https://gitlab.com/ptman/matrix-docs/-/tree/master/free-matrix-server)
   to discuss this guide specifically
+- [#matrix-docker-ansible-deploy:devture.com](https://matrix.to/#/#matrix-docker-ansible-deploy:devture.com)
+  to discuss the playbook used in this guide
+- [#synapse:matrix.org](https://matrix.to/#/#synapse:matrix.org) to discuss
+  running synapse in general
 - Email author at <a
   href="mailto:paul.totterman@gmail.com">paul.totterman@gmail.com</a>.
 
