@@ -139,6 +139,12 @@ ansible-playbook -i inventory/hosts setup.yml --tags=self-check
 ansible-playbook -i inventory/hosts setup.yml -e username=$user -e password=$pass -e admin=yes --tags=register-user
 ```
 
+### Set playbook architecture to arm64 if using Oracle Cloud ARM instances
+
+```yaml
+matrix_architecture: 'arm64'
+```
+
 ### Serve the base domain as well (unless you already have something serving it)
 
 ```yaml
