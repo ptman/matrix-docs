@@ -14,19 +14,20 @@ Ingredients:
 
 ## Free domain name
 
-Get one from [Freenom] or [DuckDNS] for free or any other place you wish.
-Freenom can be tricky to renew for free after the first year. A Matrix server
-cannot be [migrated] from one domain to another, so you might want to get a
-longer-lived one.
+Get a free domain your preferred source. E.g. one from [DuckDNS], [eu.org] or
+[Freenom]. Freenom can be tricky to renew for free after the first year. A
+Matrix server cannot be [migrated] from one domain to another, so you might want
+to get a longer-lived one.
 
 - https://tld-list.com/ - find cheap domains, look at renewal fees also
 - https://www.namecheap.com/promos/99-cent-domain-names/ - cheap first year
 
-You also need to specify subdomains (which is why most dynamic dns services
+You also need to specify subdomains (which is why most dynamic DNS services
 aren't sufficient). To do this I added the domain on the free [Cloudflare] plan.
-You can also use freenom dns management if you prefer.
+You can also use Freenom DNS management if you prefer.
 
 [Freenom]: https://www.freenom.com
+[eu.org]: https://nic.eu.org
 [DuckDNS]: https://www.duckdns.org/
 [Cloudflare]: https://www.cloudflare.com
 [migrated]: https://github.com/matrix-org/synapse/issues/1209
@@ -109,9 +110,9 @@ apt purge netfilter-persistent iptables-persistent
 Assuming you're using a new domain only for this you need the following DNS
 records:
 
-- A record `$domain` pointing to `$instance_external_ip_address`
-- CNAME record `matrix.$domain` pointing to `$domain`
-- CNAME record `element.$domain` pointing to `$domain`
+- An **A** record `$domain` pointing to `$instance_external_ip_address`
+- A **CNAME** record `matrix.$domain` pointing to `$domain`
+- A **CNAME** record `element.$domain` pointing to `$domain`
 
 
 ## Use matrix-docker-ansible-deploy
