@@ -19,6 +19,7 @@ Get a free domain your preferred source. E.g. one from [DuckDNS], [eu.org] or
 Matrix server cannot be [migrated] from one domain to another, so you might want
 to get a longer-lived one.
 
+- https://www.getfreedomain.name/ - list of free domain services
 - https://tld-list.com/ - find cheap domains, look at renewal fees also
 - https://www.namecheap.com/promos/99-cent-domain-names/ - cheap first year
 
